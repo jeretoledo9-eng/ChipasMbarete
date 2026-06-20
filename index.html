@@ -347,6 +347,7 @@ section{ padding-block:clamp(56px,8vw,108px); position:relative; }
   justify-content:center;
 }
 
+
 .producto-img img{
   width:100%;
   height:100%;
@@ -678,14 +679,14 @@ footer{
         <span class="eyebrow">Tradición formoseña desde casa</span>
         <h1>CHIPAS <em>MBARETÉ</em></h1>
         <p class="frase">El auténtico sabor formoseño en La Plata.</p>
-        <p class="sub">Elaboramos productos artesanales con recetas tradicionales para que disfrutes el verdadero sabor del nordeste argentino, hechos a mano en Los Hornos como en casa de la abuela.</p>
+        <p class="sub">Chipas artesanales congeladas, hechas con ingredientes seleccionados y recetas tradicionales para que disfrutes el sabor casero recién horneado cuando quieras.</p>
         <div class="hero-acciones">
           <button type="button" class="btn btn-primary" data-abrir-carrito>Hacer Pedido</button>
           <a href="#productos" class="btn btn-secondary">Ver Productos</a>
         </div>
         <div class="hero-datos">
           <div><strong>100%</strong><span>Artesanal</span></div>
-          <div><strong>Hoy</strong><span>Recién horneado</span></div>
+        <div><strong>Listo</strong><span>Para hornear</span></div>
           <div><strong>♥</strong><span>Receta familiar</span></div>
         </div>
       </div>
@@ -774,13 +775,13 @@ footer{
       <div class="nosotros-texto reveal d1">
         <span class="eyebrow">Nuestra historia</span>
         <h2 class="titulo-seccion">Sobre Nosotros</h2>
-        <p>Somos una familia formoseña viviendo en La Plata. Elaboramos chipas y productos regionales de manera artesanal, manteniendo las recetas tradicionales y la calidad de siempre.</p>
-        <p>Cada amasado lleva la misma dedicación de nuestro horno familiar: ingredientes seleccionados, tiempos de cocción cuidados y mucho cariño formoseño, ahora cerca tuyo en Los Hornos.</p>
+        <p>Somos una familia formoseña viviendo en La Plata, llevando el auténtico sabor del nordeste argentino a tu mesa. Elaboramos chipas y productos regionales congelados de manera artesanal, respetando las recetas tradicionales que nos acompañan desde siempre.</p>
+        <p>Cada producto está preparado con dedicación, ingredientes seleccionados y el cuidado de una elaboración casera, para que puedas hornearlo en casa y disfrutar ese aroma y sabor como recién hecho.</p>
         <ul class="lista-valores">
-          <li>Producto casero</li>
-          <li>Calidad pareja</li>
-          <li>Trato cercano</li>
-          <li>Recetas de familia</li>
+          <li>Recetas tradicionales</li>
+          <li>Elaboración artesanal</li>
+          <li>Calidad y sabor de siempre</li>
+          <li>Atención cercana</li>
         </ul>
       </div>
     </div>
@@ -795,7 +796,10 @@ footer{
     <div class="container">
       <span class="eyebrow">Nuestra selección</span>
       <h2 class="titulo-seccion">Productos</h2>
-      <p class="intro-seccion">Hechos a mano, todos los días, con la receta de siempre. Elegí cantidad y agregá al carrito.</p>
+      <div style="background:#F5E6C2; padding:15px; border-radius:15px; margin-top:15px; color:#5A3722; font-weight:600;">
+❄️ Todos nuestros productos se entregan congelados. Conservan todo el sabor artesanal y están listos para hornear en casa.
+</div>
+<!-- <p class="intro-seccion">Nuestros productos son congelados, elaborados artesanalmente con recetas tradicionales formoseñas. Listos para hornear y disfrutar como recién hechos.</p> -->
       <div class="grid-productos" id="grid-productos"><!-- Se completa automáticamente con JavaScript --></div>
     </div>
   </section>
@@ -833,6 +837,55 @@ footer{
       </div>
     </div>
   </section> -->
+
+  <!-- ============================================================
+     COMO HORNEAR
+     ============================================================ -->
+<section id="hornear">
+  <div class="container">
+    <span class="eyebrow">Fácil y delicioso</span>
+    <h2 class="titulo-seccion">¿Cómo hornear tus chipas?</h2>
+    <p class="intro-seccion">
+      Nuestros productos llegan congelados para que puedas disfrutarlos recién horneados en tu casa.
+      Seguí estos simples pasos y disfrutá todo su sabor.
+    </p>
+
+    <div class="pasos">
+
+      <div class="paso reveal">
+        <div class="numero">1</div>
+        <h3>Precalentá el horno</h3>
+        <p>
+          Encendé el horno y llevalo a temperatura media-alta antes de cocinar.
+        </p>
+      </div>
+
+      <div class="paso reveal d1">
+        <div class="numero">2</div>
+        <h3>Colocá los productos</h3>
+        <p>
+          Poné las chipas congeladas en una placa, sin necesidad de descongelarlas previamente.
+        </p>
+      </div>
+
+      <div class="paso reveal d2">
+        <div class="numero">3</div>
+        <h3>Horneá 20 minutos</h3>
+        <p>
+          Cociná hasta que estén doradas por fuera y listas para disfrutar.
+        </p>
+      </div>
+
+    </div>
+
+    <div class="pedidos-cta reveal">
+      <p style="font-weight:700; color:var(--color-marron);">
+        Del freezer al horno y del horno a tu mesa.
+      </p>
+    </div>
+
+  </div>
+</section>
 
   <!-- ============================================================
        TESTIMONIOS
@@ -1018,7 +1071,7 @@ footer{
     {
     id: 'chipa',
     nombre: 'Chipa',
-    descripcion: 'Chipa artesanal elaborada con queso, almidón de mandioca y receta tradicional formoseña.',
+    descripcion: 'Chipa congelada artesanal elaborada con queso, almidón de mandioca y receta tradicional formoseña. Lista para hornear.',
     precio: 14000,
     unidad: 'kg',
     ilustracion: 'chipa'
@@ -1026,7 +1079,7 @@ footer{
   {
     id: 'pan-de-chipa',
     nombre: 'Pan de Chipa',
-    descripcion: 'Pan de chipa suave, esponjoso y lleno de sabor.',
+    descripcion: 'Pan de chipa congelado, suave y lleno de sabor. Solo horneás y disfrutás como recién hecho.',
     precio: 14000,
     unidad: 'kg',
     ilustracion: 'pan'
