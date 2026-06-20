@@ -1,0 +1,1345 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#5A3722">
+<title>Chipas Mbareté | El auténtico sabor formoseño en La Plata</title>
+<link rel="icon" type="image/png" href="fotos/logo.webp">
+<meta name="description" content="Chipas, pan de chipa y mbejú artesanales en Los Hornos, La Plata. Recetas tradicionales formoseñas, hechas con cariño. Pedí por WhatsApp.">
+
+<!--
+════════════════════════════════════════════════════════════════════════
+ CHIPAS MBARETÉ — SITIO WEB DE UNA SOLA PÁGINA (index.html)
+ No necesitás saber programar para editar este sitio. Guía rápida:
+════════════════════════════════════════════════════════════════════════
+
+1) CAMBIAR PRECIOS, NOMBRES O DESCRIPCIONES DE PRODUCTOS
+   Buscá (Ctrl+F o Cmd+F) el texto:   CONFIG: PRODUCTOS
+   Vas a ver una lista de bloques como este:
+        { id: 'chipa', nombre: 'Chipa', descripcion: '...', precio: 500, ilustracion: 'chipa' }
+   Editá el texto entre comillas o el número de "precio" y guardá el archivo.
+   Para AGREGAR un producto nuevo, copiá un bloque completo { ... },
+   pegalo dentro de los corchetes [ ] (separado por una coma) y cambiá sus datos.
+   El campo "ilustracion" debe ser: 'chipa', 'pan' o 'mbeyu' (o crear una nueva,
+   ver el punto 2).
+
+2) CAMBIAR LOS DIBUJOS POR FOTOS REALES
+   Los productos usan ilustraciones dibujadas (no fotos) para que la página
+   funcione perfecto sin necesitar conexión a internet ni archivos extra.
+   Si preferís usar tus propias fotos:
+     a) Guardá tus fotos en la MISMA carpeta que este archivo index.html
+        (por ejemplo: chipa.jpg, pan.jpg, mbeyu.jpg)
+     b) Buscá el texto:   ILUSTRACIONES SVG
+     c) Reemplazá el dibujo de cada producto por una línea como esta:
+          chipa: '<img src="chipa.jpg" alt="Chipa artesanal">'
+     (Repetí lo mismo para "pan" y "mbeyu")
+
+3) CAMBIAR TEXTOS GENERALES (hero, sobre nosotros, testimonios, promociones, etc.)
+   Todos los textos están escritos directamente en el HTML, en español.
+   Usá Ctrl+F / Cmd+F para buscar la frase exacta que querés cambiar
+   y reemplazala por la tuya. No hace falta tocar nada más.
+
+4) CAMBIAR EL NÚMERO DE WHATSAPP
+   Buscá la palabra "CONFIG" dentro de la etiqueta <script> (casi al final
+   del archivo) y cambiá el valor de whatsappNumber. Tiene que ir SIN el
+   signo "+", sin espacios y sin guiones. Ejemplo: '5493704056857'
+
+5) CAMBIAR LOS COLORES DE LA MARCA
+   Buscá ":root" al principio de la etiqueta <style> y modificá los
+   valores hexadecimales, por ejemplo: --color-dorado: #E2A33B;
+
+6) CAMBIAR EL INSTAGRAM
+   Buscá "@chipas_mbarete_laplata" con Ctrl+F: aparece como texto y como
+   link (href="https://www.instagram.com/..."). Cambiá ambos.
+
+Una vez editado, simplemente guardá el archivo y abrilo de nuevo en el
+navegador (doble clic) para ver los cambios. ¡Eso es todo!
+════════════════════════════════════════════════════════════════════════
+-->
+
+<style>
+/* ============================================================
+   VARIABLES DE MARCA — cambiá acá los colores y tipografías
+   ============================================================ */
+:root{
+  --color-crema:        #FBF2DD;
+  --color-crema-suave:  #F5E6C2;
+  --color-dorado:       #E2A33B;
+  --color-dorado-claro: #F2C46B;
+  --color-naranja:      #D9783B;
+  --color-naranja-oscuro: #B85A28;
+  --color-marron:       #5A3722;
+  --color-marron-oscuro:#38210F;
+  --color-blanco:       #FFFFFF;
+  --color-whatsapp:     #25D366;
+
+  --font-display: Georgia, 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', serif;
+  --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+  --sombra-suave: 0 10px 30px rgba(91,57,35,.15);
+  --sombra-fuerte: 0 18px 40px rgba(56,33,15,.25);
+  --radio: 22px;
+}
+
+/* ============================================================
+   BASE Y RESET
+   ============================================================ */
+*{ box-sizing:border-box; margin:0; padding:0; }
+html{ scroll-behavior:smooth; }
+body{
+  font-family:var(--font-body);
+  background:var(--color-crema);
+  color:var(--color-marron-oscuro);
+  line-height:1.65;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+img,svg{ display:block; max-width:100%; }
+a{ color:inherit; text-decoration:none; }
+ul{ list-style:none; }
+button,input{ font-family:inherit; font-size:1rem; }
+button{ cursor:pointer; border:none; background:none; }
+h1,h2,h3{ font-family:var(--font-display); color:var(--color-marron-oscuro); line-height:1.15; }
+:focus-visible{ outline:3px solid var(--color-naranja-oscuro); outline-offset:3px; border-radius:4px; }
+
+.container{ width:min(1180px,92%); margin-inline:auto; }
+section{ padding-block:clamp(56px,8vw,108px); position:relative; }
+
+.eyebrow{
+  display:inline-block;
+  text-transform:uppercase;
+  letter-spacing:.14em;
+  font-weight:700;
+  font-size:.78rem;
+  color:var(--color-naranja-oscuro);
+  margin-bottom:.6rem;
+}
+.titulo-seccion{
+  font-size:clamp(1.9rem,3.6vw,2.7rem);
+  margin-bottom:.9rem;
+}
+.intro-seccion{
+  max-width:620px;
+  color:var(--color-marron);
+  opacity:.9;
+  font-size:1.05rem;
+}
+.centrado{ text-align:center; margin-inline:auto; }
+
+/* ============================================================
+   ANIMACIONES DE ENTRADA AL HACER SCROLL
+   ============================================================ */
+.reveal{
+  opacity:0;
+  transform:translateY(28px);
+  transition:opacity .7s ease, transform .7s ease;
+}
+.reveal.visible{ opacity:1; transform:translateY(0); }
+.reveal.d1{ transition-delay:.08s; }
+.reveal.d2{ transition-delay:.16s; }
+.reveal.d3{ transition-delay:.24s; }
+
+@keyframes girar{ to{ transform:rotate(360deg); } }
+@keyframes flotar{
+  0%,100%{ transform:translateY(0) rotate(var(--rot,0deg)); }
+  50%{ transform:translateY(-14px) rotate(var(--rot,0deg)); }
+}
+@keyframes vaporSubir{
+  0%{ transform:translateY(0); opacity:.55; }
+  100%{ transform:translateY(-14px); opacity:0; }
+}
+@keyframes pulso{
+  0%{ box-shadow:0 0 0 0 rgba(37,211,102,.55); }
+  70%{ box-shadow:0 0 0 18px rgba(37,211,102,0); }
+  100%{ box-shadow:0 0 0 0 rgba(37,211,102,0); }
+}
+.vapor{ animation:vaporSubir 2.6s ease-in-out infinite; transform-origin:center; }
+.vapor.v2{ animation-delay:.6s; }
+
+@media (prefers-reduced-motion:reduce){
+  *{ animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; scroll-behavior:auto !important; }
+}
+
+/* ============================================================
+   BOTONES
+   ============================================================ */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:.55rem;
+  padding:.95rem 1.9rem; border-radius:999px; font-weight:700; font-size:1rem;
+  transition:transform .25s ease, box-shadow .25s ease, background .25s ease;
+  white-space:nowrap;
+}
+.btn-primary{
+  background:linear-gradient(135deg,var(--color-dorado-claro),var(--color-naranja));
+  color:var(--color-marron-oscuro);
+  box-shadow:var(--sombra-suave);
+}
+.btn-primary:hover{ transform:translateY(-3px); box-shadow:0 16px 32px rgba(184,90,40,.4); }
+.btn-secondary{
+  background:transparent; border:2px solid var(--color-marron); color:var(--color-marron);
+}
+.btn-secondary:hover{ background:var(--color-marron); color:var(--color-crema); transform:translateY(-3px); }
+.btn-whatsapp{ background:var(--color-whatsapp); color:#fff; }
+.btn-whatsapp:hover{ transform:translateY(-3px); box-shadow:0 14px 28px rgba(37,211,102,.4); }
+.btn-block{ width:100%; }
+.btn-sm{ padding:.65rem 1.2rem; font-size:.9rem; }
+
+/* ============================================================
+   ENCABEZADO / NAV FIJO
+   ============================================================ */
+#header-principal{
+  position:fixed; top:0; left:0; width:100%; z-index:1000;
+  background:rgba(251,242,221,.86); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
+  transition:box-shadow .3s ease;
+}
+#header-principal.con-sombra{ box-shadow:0 6px 24px rgba(91,57,35,.14); }
+.nav-wrap{
+  display:flex; align-items:center; justify-content:space-between; padding-block:.85rem;
+}
+.logo{
+  display:flex; align-items:center; gap:.5rem;
+  font-family:var(--font-display); font-weight:700; font-size:1.35rem; color:var(--color-marron-oscuro);
+}
+.logo .punto{ color:var(--color-naranja-oscuro); }
+.logo span.sub{
+  display:block; font-family:var(--font-body); font-size:.62rem; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--color-naranja-oscuro); font-weight:700; margin-top:-2px;
+}
+#nav-menu{
+  display:flex; align-items:center; gap:2rem;
+}
+#nav-menu a{
+  font-weight:600; font-size:.96rem; color:var(--color-marron); position:relative; padding-block:.3rem;
+}
+#nav-menu a::after{
+  content:''; position:absolute; left:0; bottom:-2px; width:0; height:2px;
+  background:var(--color-naranja-oscuro); transition:width .25s ease;
+}
+#nav-menu a:hover::after{ width:100%; }
+.nav-acciones{ display:flex; align-items:center; gap:.9rem; }
+
+.btn-icono-carrito{
+  position:relative; width:44px; height:44px; border-radius:50%;
+  background:var(--color-crema-suave); display:flex; align-items:center; justify-content:center;
+  font-size:1.2rem; transition:transform .2s ease;
+}
+.btn-icono-carrito:hover{ transform:translateY(-2px); }
+#badge-carrito{
+  position:absolute; top:-4px; right:-4px; min-width:20px; height:20px; padding:0 4px;
+  background:var(--color-naranja-oscuro); color:#fff; border-radius:999px;
+  font-size:.7rem; font-weight:800; display:none; align-items:center; justify-content:center;
+}
+
+#nav-toggle{
+  display:none; flex-direction:column; gap:5px; width:32px; height:24px; z-index:1100;
+}
+#nav-toggle span{ display:block; height:3px; border-radius:3px; background:var(--color-marron-oscuro); transition:.3s ease; }
+#nav-toggle.activo span:nth-child(1){ transform:translateY(8px) rotate(45deg); }
+#nav-toggle.activo span:nth-child(2){ opacity:0; }
+#nav-toggle.activo span:nth-child(3){ transform:translateY(-8px) rotate(-45deg); }
+
+/* ============================================================
+   DIVISOR DECORATIVO TIPO ENCAJE (inspirado en ñandutí)
+   ============================================================ */
+.divisor-encaje{
+  height:34px; width:100%;
+  -webkit-mask-image:radial-gradient(circle at 11px 0, transparent 12px, #000 13px);
+  mask-image:radial-gradient(circle at 11px 0, transparent 12px, #000 13px);
+  -webkit-mask-size:22px 22px; mask-size:22px 22px;
+  -webkit-mask-repeat:repeat-x; mask-repeat:repeat-x;
+}
+.divisor-encaje.cima{ -webkit-mask-position:0 -1px; mask-position:0 -1px; transform:scaleY(-1); }
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{
+  position:relative; overflow:hidden;
+  padding-top:clamp(120px,18vw,160px); padding-bottom:0;
+  background:radial-gradient(ellipse at top right, var(--color-crema-suave) 0%, var(--color-crema) 60%);
+}
+.hero .container{
+  display:grid; grid-template-columns:1.05fr .95fr; align-items:center; gap:3rem;
+  padding-bottom:70px;
+}
+.sol-nandu{
+  position:absolute; top:-120px; right:-140px; width:560px; max-width:none;
+  opacity:.4; animation:girar 100s linear infinite; pointer-events:none;
+}
+.hero-texto .eyebrow{ display:flex; align-items:center; gap:.5rem; }
+.hero-texto .eyebrow::before{ content:'🌾'; }
+.hero-texto h1{
+  font-size:clamp(2.5rem,6vw,4.1rem); font-weight:700; letter-spacing:-.01em;
+}
+.hero-texto h1 em{
+  font-style:italic; color:var(--color-naranja-oscuro);
+}
+.hero-texto .frase{
+  font-size:clamp(1.15rem,2vw,1.4rem); margin-top:1rem; color:var(--color-marron); font-weight:600;
+}
+.hero-texto .sub{
+  margin-top:1rem; max-width:520px; color:var(--color-marron); opacity:.88; font-size:1.02rem;
+}
+.hero-acciones{ display:flex; flex-wrap:wrap; gap:1rem; margin-top:2.1rem; }
+.hero-datos{
+  display:flex; gap:2.2rem; margin-top:2.6rem; flex-wrap:wrap;
+}
+.hero-datos div strong{ display:block; font-family:var(--font-display); font-size:1.5rem; color:var(--color-naranja-oscuro); }
+.hero-datos div span{ font-size:.82rem; color:var(--color-marron); opacity:.8; }
+
+.hero-ilustracion{ position:relative; display:flex; align-items:center; justify-content:center; }
+.hero-ilustracion svg{ width:100%; max-width:430px; }
+.flot-a{ animation:flotar 5s ease-in-out infinite; --rot:-6deg; }
+.flot-b{ animation:flotar 6s ease-in-out infinite; --rot:4deg; animation-delay:.4s; }
+.flot-c{ animation:flotar 4.5s ease-in-out infinite; --rot:-3deg; animation-delay:.9s; }
+
+/* ============================================================
+   SOBRE NOSOTROS
+   ============================================================ */
+#nosotros{ background:var(--color-blanco); }
+.nosotros-grid{
+  display:grid; grid-template-columns:.95fr 1.05fr; gap:3.2rem; align-items:center;
+}
+.nosotros-ilustracion{
+  background:var(--color-crema); border-radius:var(--radio); padding:2.2rem;
+  box-shadow:var(--sombra-suave);
+}
+.nosotros-texto p{ font-size:1.08rem; color:var(--color-marron); margin-bottom:1.1rem; }
+.lista-valores{ display:grid; grid-template-columns:1fr 1fr; gap:.9rem; margin-top:1.6rem; }
+.lista-valores li{
+  display:flex; align-items:center; gap:.6rem; font-weight:700; font-size:.92rem; color:var(--color-marron-oscuro);
+}
+.lista-valores li::before{
+  content:'✦'; color:var(--color-naranja-oscuro); font-size:1rem;
+}
+.producto-precio small{
+  font-family:var(--font-body);
+  font-size:.85rem;
+  font-weight:700;
+  color:var(--color-marron);
+}
+
+/* ============================================================
+   PRODUCTOS
+   ============================================================ */
+#productos{ background:var(--color-crema); }
+.grid-productos{
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(270px,1fr)); gap:2rem; margin-top:2.6rem;
+}
+.card-producto{
+  background:var(--color-blanco); border-radius:var(--radio); overflow:hidden;
+  box-shadow:var(--sombra-suave); transition:transform .3s ease, box-shadow .3s ease;
+  display:flex; flex-direction:column;
+}
+.card-producto:hover{ transform:translateY(-8px); box-shadow:var(--sombra-fuerte); }
+.producto-img{
+  background:linear-gradient(160deg,var(--color-crema-suave),var(--color-crema));
+  padding:1.6rem 1.6rem 0.6rem; display:flex; align-items:center; justify-content:center;
+}
+.producto-img{
+  background:var(--color-crema-suave);
+  padding:0;
+  height:280px;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.producto-img img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:0;
+  transition:transform .4s ease;
+}
+
+.card-producto:hover .producto-img img{
+  transform:scale(1.08);
+}
+.producto-info{ padding:1.5rem 1.6rem 1.8rem; display:flex; flex-direction:column; flex:1; }
+.producto-info h3{ font-size:1.35rem; margin-bottom:.5rem; }
+.producto-info p{ color:var(--color-marron); opacity:.85; font-size:.94rem; flex:1; }
+.producto-footer{
+  display:flex; align-items:center; justify-content:space-between; margin-block:1.1rem;
+}
+.producto-precio{ font-family:var(--font-display); font-size:1.5rem; color:var(--color-naranja-oscuro); font-weight:700; }
+.stepper{
+  display:flex; align-items:center; gap:.7rem; background:var(--color-crema-suave); border-radius:999px; padding:.3rem .5rem;
+}
+.stepper-btn{
+  width:28px; height:28px; border-radius:50%; background:var(--color-blanco); font-size:1.1rem; font-weight:700;
+  display:flex; align-items:center; justify-content:center; color:var(--color-marron-oscuro); transition:background .2s ease;
+}
+.stepper-btn:hover{ background:var(--color-dorado-claro); }
+.stepper-cant{ min-width:18px; text-align:center; font-weight:700; }
+.btn-agregar{
+  background:var(--color-marron-oscuro); color:var(--color-crema); border-radius:999px; padding:.85rem 1rem;
+  font-weight:700; transition:background .25s ease, transform .25s ease;
+}
+.btn-agregar:hover{ background:var(--color-naranja-oscuro); transform:translateY(-2px); }
+.btn-agregar.agregado{ background:var(--color-whatsapp); }
+
+/* ============================================================
+   PROMOCIONES
+   ============================================================ */
+#promociones{ background:var(--color-marron-oscuro); color:var(--color-crema); }
+#promociones .eyebrow{ color:var(--color-dorado-claro); }
+#promociones .titulo-seccion{ color:var(--color-crema); }
+#promociones .intro-seccion{ color:var(--color-crema); opacity:.8; }
+.grid-promos{
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1.8rem; margin-top:2.6rem;
+}
+.card-promo{
+  position:relative; background:linear-gradient(150deg,rgba(255,255,255,.07),rgba(255,255,255,.02));
+  border:1px solid rgba(242,196,107,.25); border-radius:var(--radio); padding:2rem 1.7rem 1.8rem; overflow:hidden;
+}
+.card-promo .cinta{
+  position:absolute; top:18px; right:-38px; transform:rotate(40deg);
+  background:linear-gradient(135deg,var(--color-dorado-claro),var(--color-naranja));
+  color:var(--color-marron-oscuro); font-size:.72rem; font-weight:800; letter-spacing:.06em;
+  padding:.35rem 2.6rem; text-transform:uppercase;
+}
+.card-promo h3{ color:var(--color-crema); font-size:1.3rem; margin:.6rem 0 .6rem; }
+.card-promo p{ color:var(--color-crema); opacity:.82; font-size:.94rem; margin-bottom:1.3rem; min-height:64px; }
+.card-promo .precio-promo{ font-family:var(--font-display); font-size:1.6rem; color:var(--color-dorado-claro); margin-bottom:1.1rem; display:block; }
+
+/* ============================================================
+   TESTIMONIOS
+   ============================================================ */
+#testimonios{ background:var(--color-blanco); }
+.grid-testimonios{
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1.8rem; margin-top:2.6rem;
+}
+.card-testimonio{
+  background:var(--color-crema); border-radius:var(--radio); padding:2rem 1.8rem; position:relative;
+}
+.card-testimonio .comillas{
+  font-family:var(--font-display); font-size:3.2rem; color:var(--color-dorado); line-height:1; opacity:.6;
+}
+.card-testimonio p.cita{ font-style:italic; color:var(--color-marron-oscuro); margin:.6rem 0 1.2rem; }
+.estrellas{ color:var(--color-naranja-oscuro); letter-spacing:.15em; margin-bottom:.4rem; }
+.autor{ display:flex; flex-direction:column; }
+.autor strong{ font-size:.95rem; }
+.autor span{ font-size:.8rem; color:var(--color-marron); opacity:.75; }
+
+/* ============================================================
+   PEDIDOS (CÓMO COMPRAR)
+   ============================================================ */
+#pedidos{ background:var(--color-crema-suave); }
+.pasos{
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1.8rem; margin-top:2.6rem;
+}
+.paso{
+  background:var(--color-blanco); border-radius:var(--radio); padding:2rem 1.6rem; text-align:center;
+  box-shadow:var(--sombra-suave);
+}
+.paso .numero{
+  width:46px; height:46px; border-radius:50%; margin:0 auto 1rem;
+  background:linear-gradient(135deg,var(--color-dorado-claro),var(--color-naranja));
+  display:flex; align-items:center; justify-content:center; font-family:var(--font-display); font-weight:700; font-size:1.2rem;
+  color:var(--color-marron-oscuro);
+}
+.paso h3{ font-size:1.1rem; margin-bottom:.5rem; }
+.paso p{ font-size:.92rem; color:var(--color-marron); opacity:.85; }
+.pedidos-cta{ text-align:center; margin-top:2.6rem; }
+
+/* ============================================================
+   INSTAGRAM
+   ============================================================ */
+#instagram{
+  background:linear-gradient(135deg,var(--color-naranja-oscuro),var(--color-dorado));
+  color:var(--color-blanco); text-align:center;
+}
+#instagram .eyebrow{ color:rgba(255,255,255,.85); }
+#instagram h2{ color:var(--color-blanco); }
+.ig-card{
+  max-width:560px; margin:2rem auto 0; background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.35);
+  border-radius:var(--radio); padding:2.4rem 1.8rem; backdrop-filter:blur(6px);
+}
+.ig-handle{ font-family:var(--font-display); font-size:1.7rem; margin-bottom:.4rem; }
+.ig-card p{ opacity:.92; margin-bottom:1.4rem; }
+
+/* ============================================================
+   CONTACTO
+   ============================================================ */
+#contacto{ background:var(--color-blanco); }
+.grid-contacto{
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:1.6rem; margin-top:2.6rem;
+}
+.card-contacto{
+  background:var(--color-crema); border-radius:var(--radio); padding:1.9rem; text-align:center;
+  transition:transform .25s ease;
+}
+.card-contacto:hover{ transform:translateY(-6px); }
+.card-contacto .icono{ font-size:1.9rem; margin-bottom:.7rem; }
+.card-contacto strong{ display:block; margin-bottom:.3rem; }
+.card-contacto span,.card-contacto a{ font-size:.92rem; color:var(--color-marron); }
+
+/* ============================================================
+   BOTÓN FLOTANTE DE WHATSAPP
+   ============================================================ */
+.wsp-flotante{
+  position:fixed; right:22px; bottom:22px; width:62px; height:62px; border-radius:50%;
+  background:var(--color-whatsapp); display:flex; align-items:center; justify-content:center;
+  box-shadow:0 10px 24px rgba(0,0,0,.25); z-index:1200; animation:pulso 2.6s infinite;
+}
+.wsp-flotante svg{ width:30px; height:30px; }
+.wsp-flotante:hover{ transform:scale(1.08); }
+
+/* ============================================================
+   CARRITO LATERAL (DRAWER)
+   ============================================================ */
+#cart-overlay{
+  position:fixed; inset:0; background:rgba(56,33,15,.45); opacity:0; pointer-events:none;
+  transition:opacity .3s ease; z-index:1300;
+}
+#cart-overlay.visible{ opacity:1; pointer-events:auto; }
+
+#cart-drawer{
+  position:fixed; top:0; right:-440px; width:min(420px,92vw); height:100vh; background:var(--color-blanco);
+  z-index:1400; box-shadow:-12px 0 40px rgba(56,33,15,.25); transition:right .35s ease;
+  display:flex; flex-direction:column;
+}
+#cart-drawer.abierto{ right:0; }
+.cart-header{
+  display:flex; align-items:center; justify-content:space-between; padding:1.4rem 1.5rem;
+  border-bottom:1px solid var(--color-crema-suave);
+}
+.cart-header h3{ font-size:1.25rem; }
+.cart-cerrar{ font-size:1.5rem; width:38px; height:38px; border-radius:50%; background:var(--color-crema); }
+.cart-cuerpo{ flex:1; overflow-y:auto; padding:1.2rem 1.5rem; }
+#carrito-vacio{ text-align:center; color:var(--color-marron); opacity:.7; padding-top:2rem; }
+#lista-carrito{ display:flex; flex-direction:column; gap:1rem; }
+.item-carrito{
+  display:grid; grid-template-columns:1.4fr auto auto; align-items:center; gap:.7rem;
+  background:var(--color-crema); border-radius:14px; padding:.8rem 1rem;
+}
+.item-info{ display:flex; flex-direction:column; }
+.item-info span{ font-size:.78rem; opacity:.7; }
+.item-controles{ display:flex; align-items:center; gap:.5rem; }
+.item-subtotal{ display:flex; align-items:center; gap:.6rem; font-weight:700; font-size:.92rem; }
+.item-quitar{ font-size:1rem; opacity:.6; }
+.item-quitar:hover{ opacity:1; }
+
+.cart-pie{ padding:1.3rem 1.5rem 1.6rem; border-top:1px solid var(--color-crema-suave); }
+.cart-pie label{ font-size:.85rem; font-weight:700; display:block; margin-bottom:.4rem; }
+.cart-pie input[type="text"]{
+  width:100%; padding:.75rem 1rem; border-radius:12px; border:1px solid var(--color-crema-suave);
+  background:var(--color-crema); margin-bottom:1rem;
+}
+.cart-total{ display:flex; justify-content:space-between; align-items:center; font-size:1.15rem; font-weight:800; margin-bottom:1rem; }
+#total-carrito{ color:var(--color-naranja-oscuro); }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer{
+  background:var(--color-marron-oscuro); color:var(--color-crema); padding-block:3.2rem 2rem;
+}
+.footer-grid{
+  display:flex; flex-wrap:wrap; justify-content:space-between; gap:2rem; padding-bottom:2rem;
+  border-bottom:1px solid rgba(251,242,221,.15);
+}
+.footer-marca .logo{ color:var(--color-crema); }
+.footer-marca p{ opacity:.75; margin-top:.6rem; max-width:280px; font-size:.9rem; }
+.footer-links{ display:flex; gap:3rem; flex-wrap:wrap; }
+.footer-col h4{ font-size:.85rem; text-transform:uppercase; letter-spacing:.1em; margin-bottom:.9rem; color:var(--color-dorado-claro); }
+.footer-col a, .footer-col span{ display:block; font-size:.9rem; opacity:.8; margin-bottom:.55rem; }
+.footer-col a:hover{ opacity:1; }
+.footer-bottom{
+  display:flex; flex-wrap:wrap; justify-content:space-between; gap:.6rem; padding-top:1.6rem;
+  font-size:.82rem; opacity:.65;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width:980px){
+  .nosotros-grid{ grid-template-columns:1fr; }
+  .nosotros-ilustracion{ order:-1; max-width:340px; margin-inline:auto; }
+}
+
+@media (max-width:880px){
+  #nav-toggle{ display:flex; }
+  #nav-menu{
+    position:fixed; top:0; right:-100%; height:100vh; width:min(320px,84vw);
+    background:var(--color-crema); flex-direction:column; align-items:flex-start;
+    padding:6.5rem 2rem 2rem; gap:1.6rem; transition:right .35s ease; box-shadow:-10px 0 30px rgba(0,0,0,.15);
+  }
+  #nav-menu.abierto{ right:0; }
+  .nav-acciones{ gap:.6rem; }
+  .hero .container{ grid-template-columns:1fr; text-align:center; }
+  .hero-texto .sub{ margin-inline:auto; }
+  .hero-acciones{ justify-content:center; }
+  .hero-datos{ justify-content:center; }
+  .hero-ilustracion{ order:-1; max-width:300px; margin-inline:auto; }
+  .sol-nandu{ width:420px; }
+}
+
+@media (max-width:560px){
+  .hero-datos{ gap:1.4rem; }
+  .btn{ padding:.85rem 1.4rem; font-size:.92rem; }
+  .item-carrito{ grid-template-columns:1fr; row-gap:.5rem; }
+  .item-subtotal{ justify-content:space-between; }
+ .producto-img{
+  height:220px;
+}
+
+.producto-img img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     ENCABEZADO / MENÚ FIJO
+     ============================================================ -->
+<header id="header-principal">
+  <div class="container nav-wrap">
+    <a href="#inicio" class="logo">Chipas <span class="punto">Mbareté</span></a>
+
+    <nav id="nav-menu">
+      <a href="#inicio">Inicio</a>
+      <a href="#productos">Productos</a>
+      <a href="#nosotros">Nosotros</a>
+      <a href="#pedidos">Pedidos</a>
+      <a href="#instagram">Instagram</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+
+    <div class="nav-acciones">
+      <button type="button" class="btn-icono-carrito" data-abrir-carrito aria-label="Abrir carrito de compras">
+        🛒
+        <span id="badge-carrito">0</span>
+      </button>
+     
+      <button id="nav-toggle" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ============================================================
+     CARRITO LATERAL
+     ============================================================ -->
+<div id="cart-overlay" data-cerrar-carrito></div>
+<aside id="cart-drawer" aria-label="Carrito de compras">
+  <div class="cart-header">
+    <h3>Tu pedido 😋</h3>
+    <button class="cart-cerrar" data-cerrar-carrito aria-label="Cerrar carrito">×</button>
+  </div>
+  <div class="cart-cuerpo">
+    <p id="carrito-vacio">Todavía no agregaste productos. ¡Elegí tus chipas favoritas! 🫓</p>
+    <ul id="lista-carrito"></ul>
+  </div>
+  <div class="cart-pie">
+    <label for="input-nombre-cliente">Tu nombre (opcional)</label>
+    <input type="text" id="input-nombre-cliente" placeholder="Ej: María González">
+    <div class="cart-total">
+      <span>Total</span>
+      <span id="total-carrito">$0</span>
+    </div>
+    <button id="btn-finalizar-pedido" class="btn btn-whatsapp btn-block">Finalizar Pedido por WhatsApp</button>
+  </div>
+</aside>
+
+<main>
+
+  <!-- ============================================================
+       HERO PRINCIPAL
+       ============================================================ -->
+  <section id="inicio" class="hero">
+   
+      <g stroke="#D9783B" stroke-width="1" opacity=".45">
+        <line x1="200" y1="10" x2="200" y2="390"/>
+        <line x1="10" y1="200" x2="390" y2="200"/>
+        <line x1="35" y1="105" x2="365" y2="295"/>
+        <line x1="35" y1="295" x2="365" y2="105"/>
+        <line x1="105" y1="35" x2="295" y2="365"/>
+        <line x1="105" y1="365" x2="295" y2="35"/>
+      </g>
+      <g fill="#E2A33B" opacity=".7">
+        <circle cx="260" cy="200" r="3"/><circle cx="252" cy="170" r="3"/><circle cx="230" cy="148" r="3"/>
+        <circle cx="200" cy="140" r="3"/><circle cx="170" cy="148" r="3"/><circle cx="148" cy="170" r="3"/>
+        <circle cx="140" cy="200" r="3"/><circle cx="148" cy="230" r="3"/><circle cx="170" cy="252" r="3"/>
+        <circle cx="200" cy="260" r="3"/><circle cx="230" cy="252" r="3"/><circle cx="252" cy="230" r="3"/>
+      </g>
+    </svg>
+
+    <div class="container">
+      <div class="hero-texto">
+        <span class="eyebrow">Tradición formoseña desde casa</span>
+        <h1>CHIPAS <em>MBARETÉ</em></h1>
+        <p class="frase">El auténtico sabor formoseño en La Plata.</p>
+        <p class="sub">Elaboramos productos artesanales con recetas tradicionales para que disfrutes el verdadero sabor del nordeste argentino, hechos a mano en Los Hornos como en casa de la abuela.</p>
+        <div class="hero-acciones">
+          <button type="button" class="btn btn-primary" data-abrir-carrito>Hacer Pedido</button>
+          <a href="#productos" class="btn btn-secondary">Ver Productos</a>
+        </div>
+        <div class="hero-datos">
+          <div><strong>100%</strong><span>Artesanal</span></div>
+          <div><strong>Hoy</strong><span>Recién horneado</span></div>
+          <div><strong>♥</strong><span>Receta familiar</span></div>
+        </div>
+      </div>
+
+      <div class="hero-ilustracion">
+        <svg viewBox="0 0 420 420" role="img" aria-label="Canasta con chipas recién horneadas">
+          <defs>
+            <radialGradient id="gA" cx="35%" cy="30%" r="75%">
+              <stop offset="0%" stop-color="#F2C46B"/><stop offset="55%" stop-color="#E2A33B"/><stop offset="100%" stop-color="#B85A28"/>
+            </radialGradient>
+            <radialGradient id="gB" cx="35%" cy="30%" r="75%">
+              <stop offset="0%" stop-color="#F0BE5D"/><stop offset="55%" stop-color="#DD9540"/><stop offset="100%" stop-color="#A85423"/>
+            </radialGradient>
+            <linearGradient id="gCesta" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#C97A3E"/><stop offset="100%" stop-color="#8C4A20"/>
+            </linearGradient>
+          </defs>
+
+          <!-- canasta -->
+          <path d="M60 300 q150 60 300 0 l-22 80 q-128 38 -256 0 z" fill="url(#gCesta)"/>
+          <g stroke="#5A3722" stroke-width="2" opacity=".35">
+            <path d="M70 305 q140 50 280 0" fill="none"/>
+            <path d="M78 330 q132 46 264 0" fill="none"/>
+            <path d="M88 355 q122 40 244 0" fill="none"/>
+          </g>
+
+          <!-- chipa grande -->
+          <g class="flot-a">
+            <ellipse cx="150" cy="225" rx="68" ry="58" fill="url(#gA)"/>
+            <ellipse cx="150" cy="225" rx="27" ry="23" fill="#FBF2DD"/>
+            <circle cx="120" cy="205" r="3" fill="#FBF2DD" opacity=".7"/>
+            <circle cx="180" cy="210" r="2.5" fill="#FBF2DD" opacity=".6"/>
+            <circle cx="130" cy="252" r="2.8" fill="#FBF2DD" opacity=".6"/>
+            <path class="vapor v1" d="M130 165 q-6 -10 0 -20 q6 -10 0 -20" stroke="#E2A33B" stroke-width="3" fill="none" stroke-linecap="round"/>
+          </g>
+
+          <!-- chipa mediana -->
+          <g class="flot-b">
+            <ellipse cx="260" cy="245" rx="54" ry="46" fill="url(#gB)"/>
+            <ellipse cx="260" cy="245" rx="21" ry="18" fill="#FBF2DD"/>
+            <circle cx="240" cy="230" r="2.4" fill="#FBF2DD" opacity=".7"/>
+            <circle cx="280" cy="255" r="2.2" fill="#FBF2DD" opacity=".6"/>
+            <path class="vapor v2" d="M250 195 q-5 -9 0 -18 q5 -9 0 -18" stroke="#DD9540" stroke-width="3" fill="none" stroke-linecap="round"/>
+          </g>
+
+          <!-- chipa chica -->
+          <g class="flot-c">
+            <ellipse cx="205" cy="160" rx="38" ry="32" fill="url(#gA)"/>
+            <ellipse cx="205" cy="160" rx="14" ry="12" fill="#FBF2DD"/>
+            <circle cx="195" cy="150" r="2" fill="#FBF2DD" opacity=".7"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+
+    <div class="divisor-encaje" style="background:var(--color-crema-suave);"></div>
+  </section>
+
+  <!-- ============================================================
+       SOBRE NOSOTROS
+       ============================================================ -->
+  <section id="nosotros">
+    <div class="container nosotros-grid">
+      <div class="nosotros-ilustracion reveal">
+        <svg viewBox="0 0 240 240" role="img" aria-label="Ilustración de un horno de barro tradicional">
+          <defs>
+            <radialGradient id="gFuego" cx="50%" cy="60%" r="60%">
+              <stop offset="0%" stop-color="#FCD27A"/><stop offset="55%" stop-color="#E07A2E"/><stop offset="100%" stop-color="#8C3D17"/>
+            </radialGradient>
+            <linearGradient id="gBarro" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#C97A3E"/><stop offset="100%" stop-color="#8C4A20"/>
+            </linearGradient>
+          </defs>
+          <ellipse cx="120" cy="206" rx="96" ry="13" fill="#5A3722" opacity=".2"/>
+          <rect x="52" y="160" width="136" height="42" rx="7" fill="#8C4A20"/>
+          <path d="M40 165 a80 80 0 0 1 160 0 z" fill="url(#gBarro)"/>
+          <path d="M40 165 a80 80 0 0 1 160 0" fill="none" stroke="#5A3722" stroke-width="3" opacity=".35"/>
+          <path d="M95 165 a25 35 0 0 1 50 0 v18 h-50 z" fill="#3D2715"/>
+          <path d="M100 165 a20 28 0 0 1 40 0 v14 h-40 z" fill="url(#gFuego)"/>
+          <path d="M112 168 q-4 -10 2 -16 q6 6 2 16 z" fill="#FCD27A" opacity=".9"/>
+          <path d="M128 168 q4 -8 -1 -14 q-5 5 -2 14 z" fill="#FCD27A" opacity=".8"/>
+          <rect x="148" y="58" width="14" height="36" rx="3" fill="#8C4A20"/>
+          <path class="vapor" d="M155 56 q-8 -10 0 -20 q8 -10 0 -20" stroke="#C9B89A" stroke-width="4" fill="none" stroke-linecap="round" style="animation-duration:3.2s;"/>
+        </svg>
+      </div>
+      <div class="nosotros-texto reveal d1">
+        <span class="eyebrow">Nuestra historia</span>
+        <h2 class="titulo-seccion">Sobre Nosotros</h2>
+        <p>Somos una familia formoseña viviendo en La Plata. Elaboramos chipas y productos regionales de manera artesanal, manteniendo las recetas tradicionales y la calidad de siempre.</p>
+        <p>Cada amasado lleva la misma dedicación de nuestro horno familiar: ingredientes seleccionados, tiempos de cocción cuidados y mucho cariño formoseño, ahora cerca tuyo en Los Hornos.</p>
+        <ul class="lista-valores">
+          <li>Producto casero</li>
+          <li>Calidad pareja</li>
+          <li>Trato cercano</li>
+          <li>Recetas de familia</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="divisor-encaje" style="background:var(--color-crema);"></div>
+
+  <!-- ============================================================
+       PRODUCTOS
+       ============================================================ -->
+  <section id="productos">
+    <div class="container">
+      <span class="eyebrow">Nuestra selección</span>
+      <h2 class="titulo-seccion">Productos</h2>
+      <p class="intro-seccion">Hechos a mano, todos los días, con la receta de siempre. Elegí cantidad y agregá al carrito.</p>
+      <div class="grid-productos" id="grid-productos"><!-- Se completa automáticamente con JavaScript --></div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PROMOCIONES
+       ============================================================ -->
+  <!-- <section id="promos">
+    <div class="container">
+      <span class="eyebrow">Para compartir</span>
+      <h2 class="titulo-seccion">Promociones</h2>
+      <p class="intro-seccion">Ideales para la familia, un cumple o esa juntada con amigos.</p>
+      <div class="grid-promos">
+        <div class="card-promo reveal">
+          <span class="cinta">Más pedida</span>
+          <h3>Promo Familiar</h3>
+          <p>12 chipas + 1 pan de chipa, perfecta para compartir en casa con la familia.</p>
+          <span class="precio-promo">$6.500</span>
+          <button type="button" class="btn btn-primary btn-sm btn-block" data-promo-mensaje="Promo Familiar: 12 chipas + 1 pan de chipa por $6.500">Pedir esta promo</button>
+        </div>
+        <div class="card-promo reveal d1">
+          <span class="cinta">Combo</span>
+          <h3>Combo Chipa + Mbeyú</h3>
+          <p>6 chipas bien doraditas junto a 1 mbeyú tradicional. Lo mejor de los dos mundos.</p>
+          <span class="precio-promo">$3.800</span>
+          <button type="button" class="btn btn-primary btn-sm btn-block" data-promo-mensaje="Combo Chipa + Mbeyu: 6 chipas + 1 mbeyu por $3.800">Pedir esta promo</button>
+        </div>
+        <div class="card-promo reveal d2">
+          <span class="cinta">Por cantidad</span>
+          <h3>Descuento Mayorista</h3>
+          <p>Pedidos de más de 20 chipas tienen descuento especial. Ideal para eventos y cumpleaños.</p>
+          <span class="precio-promo">Hasta 10% off</span>
+          <button type="button" class="btn btn-primary btn-sm btn-block" data-promo-mensaje="Quiero consultar el descuento por pedidos grandes (mas de 20 chipas)">Consultar descuento</button>
+        </div>
+      </div>
+    </div>
+  </section> -->
+
+  <!-- ============================================================
+       TESTIMONIOS
+       ============================================================ -->
+  <section id="testimonios">
+  <div class="container">
+    <span class="eyebrow">Lo que dicen de nosotros</span>
+    <h2 class="titulo-seccion">Testimonios</h2>
+
+    <div class="grid-testimonios">
+
+      <div class="card-testimonio reveal">
+        <span class="comillas">“</span>
+        <div class="estrellas">★★★★★</div>
+        <p class="cita">
+          Las chipas tienen un sabor espectacular. Se nota que están hechas de forma artesanal y con ingredientes de calidad.
+        </p>
+        <div class="autor">
+          <strong>María L.</strong>
+          <span>Los Hornos, La Plata</span>
+        </div>
+      </div>
+
+      <div class="card-testimonio reveal d1">
+        <span class="comillas">“</span>
+        <div class="estrellas">★★★★★</div>
+        <p class="cita">
+          Probé el pan de chipa y me encantó. Llegó fresco, calentito y con ese sabor casero que cuesta encontrar.
+        </p>
+        <div class="autor">
+          <strong>Jorge R.</strong>
+          <span>City Bell</span>
+        </div>
+      </div>
+
+      <div class="card-testimonio reveal d2">
+        <span class="comillas">“</span>
+        <div class="estrellas">★★★★★</div>
+        <p class="cita">
+          El mbejú está excelente. Me recordó a las recetas tradicionales de mi familia. Muy recomendable.
+        </p>
+        <div class="autor">
+          <strong>Jeremias T.</strong>
+          <span>Tolosa, La Plata</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+  <div class="divisor-encaje cima" style="background:var(--color-crema-suave);"></div>
+
+  <!-- ============================================================
+       PEDIDOS
+       ============================================================ -->
+  <section id="pedidos">
+    <div class="container">
+      <span class="eyebrow">Es muy fácil</span>
+      <h2 class="titulo-seccion">¿Cómo hacer tu pedido?</h2>
+      <p class="intro-seccion">En tres pasos tenés tus chipas en camino.</p>
+      <div class="pasos">
+        <div class="paso reveal">
+          <div class="numero">1</div>
+          <h3>Elegí tus productos</h3>
+          <p>Mirá la sección Productos y sumá cantidades de chipa, pan de chipa o mbejú.</p>
+        </div>
+        <div class="paso reveal d1">
+          <div class="numero">2</div>
+          <h3>Agregalos al carrito</h3>
+          <p>Revisá tu pedido, las cantidades y el total en cualquier momento desde el ícono del carrito.</p>
+        </div>
+        <div class="paso reveal d2">
+          <div class="numero">3</div>
+          <h3>Confirmá por WhatsApp</h3>
+          <p>Con un solo toque enviamos tu pedido armado directo a nuestro WhatsApp. ¡Así de simple!</p>
+        </div>
+      </div>
+      <div class="pedidos-cta reveal">
+        <button type="button" class="btn btn-primary" data-abrir-carrito>Ver mi carrito y pedir</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       INSTAGRAM
+       ============================================================ -->
+  <section id="instagram">
+    <div class="container">
+      <span class="eyebrow">Seguinos</span>
+      <h2 class="titulo-seccion">Nuestro Instagram</h2>
+      <div class="ig-card reveal">
+        <div class="ig-handle">@chipas_mbarete_laplata</div>
+        <p>Fotos del día a día en la cocina, productos recién salidos del horno y novedades de promociones.</p>
+        <a class="btn btn-secondary" style="border-color:#fff; color:#fff;" href="https://www.instagram.com/chipas_mbarete_laplata" target="_blank" rel="noopener">Seguinos en Instagram</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CONTACTO
+       ============================================================ -->
+  <section id="contacto">
+    <div class="container">
+      <span class="eyebrow">Estamos cerca tuyo</span>
+      <h2 class="titulo-seccion">Contacto</h2>
+      <div class="grid-contacto">
+        <div class="card-contacto reveal">
+          <div class="icono">📍</div>
+          <strong>Ubicación</strong>
+          <span>Los Hornos, La Plata, Buenos Aires</span>
+        </div>
+        <div class="card-contacto reveal d1">
+          <div class="icono">📱</div>
+          <strong>WhatsApp</strong>
+          <a href="https://wa.me/5493704056857" target="_blank" rel="noopener">+54 9 3704 05-6857</a>
+        </div>
+        <div class="card-contacto reveal d2">
+          <div class="icono">📷</div>
+          <strong>Instagram</strong>
+          <a href="https://www.instagram.com/chipas_mbarete_laplata" target="_blank" rel="noopener">@chipas_mbarete_laplata</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================================================
+     BOTÓN FLOTANTE DE WHATSAPP
+     ============================================================ -->
+<a class="wsp-flotante" href="https://wa.me/5493704056857" target="_blank" rel="noopener" aria-label="Escribinos por WhatsApp">
+  <svg viewBox="0 0 32 32" fill="#fff" aria-hidden="true"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.4.7 4.6 1.9 6.5L4 29l7.7-1.9c1.8 1 3.9 1.5 6.3 1.5 6.6 0 12-5.4 12-12S22.6 3 16 3zm0 21.8c-2.1 0-4.1-.6-5.8-1.6l-.4-.2-4.6 1.2 1.2-4.5-.3-.5C5 17.5 4.4 15.8 4.4 14 4.4 8.7 9.7 4.4 16 4.4S27.6 8.7 27.6 14 22.3 24.8 16 24.8zm6.4-7.4c-.3-.2-2-1-2.3-1.1-.3-.1-.5-.2-.8.2-.2.3-.9 1.1-1.1 1.4-.2.2-.4.3-.7.1-.3-.2-1.4-.5-2.7-1.7-1-.9-1.7-2-1.9-2.3-.2-.3 0-.5.1-.7.2-.2.3-.4.5-.6.2-.2.2-.3.3-.6.1-.2 0-.5 0-.7-.1-.2-.8-1.9-1.1-2.6-.3-.7-.6-.6-.8-.6h-.7c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.8s1.2 3.3 1.4 3.5c.2.2 2.3 3.6 5.7 5 .8.3 1.4.5 1.9.7.8.3 1.5.2 2-.1.6-.4 2-1.6 2.3-2.3.3-.7.3-1.2.2-1.4-.1-.1-.3-.2-.6-.4z"/></svg>
+</a>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer>
+  <div class="container footer-grid">
+    <div class="footer-marca">
+      <a href="#inicio" class="logo">🫓 Chipas <span class="punto">Mbareté</span></a>
+      <p>El auténtico sabor formoseño en La Plata. Tradición, calidad y cercanía en cada producto artesanal.</p>
+    </div>
+    <div class="footer-links">
+      <div class="footer-col">
+        <h4>Navegación</h4>
+        <a href="#inicio">Inicio</a>
+        <a href="#productos">Productos</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#pedidos">Pedidos</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <span>📍 Los Hornos, La Plata</span>
+        <a href="https://wa.me/5493704056857" target="_blank" rel="noopener">📱 +54 9 3704 05-6857</a>
+        <a href="https://www.instagram.com/chipas_mbarete_laplata" target="_blank" rel="noopener">📷 @chipas_mbarete_laplata</a>
+      </div>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>CHIPAS MBARETÉ — El auténtico sabor formoseño en La Plata.</span>
+    <span>© <span id="anio-actual"></span> Todos los derechos reservados.</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+
+  /* ============================================================
+     CONFIG: GENERAL  — cambiá acá el número de WhatsApp
+     ============================================================ */
+  const CONFIG = {
+    whatsappNumber: '5493704056857', // sin "+", espacios ni guiones
+    nombreNegocio: 'CHIPAS MBARETÉ'
+  };
+
+  /* ============================================================
+     CONFIG: PRODUCTOS — editá precios, nombres y descripciones acá
+     ============================================================ */
+  const PRODUCTOS = [
+    {
+    id: 'chipa',
+    nombre: 'Chipa',
+    descripcion: 'Chipa artesanal elaborada con queso, almidón de mandioca y receta tradicional formoseña.',
+    precio: 14000,
+    unidad: 'kg',
+    ilustracion: 'chipa'
+  },
+  {
+    id: 'pan-de-chipa',
+    nombre: 'Pan de Chipa',
+    descripcion: 'Pan de chipa suave, esponjoso y lleno de sabor.',
+    precio: 14000,
+    unidad: 'kg',
+    ilustracion: 'pan'
+  }
+    // {
+    //   id: 'mbeyu',
+    //   nombre: 'Mbejú',
+    //   descripcion: 'Mbejú tradicional preparado de forma artesanal con ingredientes seleccionados.',
+    //   precio: "Próximamente",
+    //   ilustracion: 'mbeyu'
+    // }
+  ];
+
+  const formatearPrecio = (n) => '$' + n.toLocaleString('es-AR');
+
+ /* ============================================================
+   FOTOS REALES DE PRODUCTOS
+   Colocá las imágenes dentro de la carpeta "fotos"
+   Ejemplo:
+   fotos/chipa.jpg
+   fotos/pan.jpg
+   fotos/mbeyu.jpg
+   ============================================================ */
+
+const ILUSTRACIONES = {
+
+  chipa: `
+    <img 
+      src="fotos/chipa1.webp"
+      alt="Chipa artesanal formoseña recién horneada"
+      loading="lazy">
+  `,
+
+  pan: `
+    <img 
+      src="fotos/pan.webp"
+      alt="Pan de chipa artesanal"
+      loading="lazy">
+  `,
+
+  mbeyu: `
+    <img 
+      src="fotos/mbeyu.webp"
+      alt="Mbeyú tradicional formoseño"
+      loading="lazy">
+  `
+
+};
+
+  /* ============================================================
+     RENDER DE PRODUCTOS
+     ============================================================ */
+  const gridProductos = document.getElementById('grid-productos');
+  const cantidadesTemp = {};
+  PRODUCTOS.forEach(p => { cantidadesTemp[p.id] = 1; });
+
+  function renderProductos(){
+    gridProductos.innerHTML = PRODUCTOS.map((p, i) => `
+      <article class="card-producto reveal d${Math.min(i,3)}">
+        <div class="producto-img">${ILUSTRACIONES[p.ilustracion] || ''}</div>
+        <div class="producto-info">
+          <h3>${p.nombre}</h3>
+          <p>${p.descripcion}</p>
+          <div class="producto-footer">
+      <span class="producto-precio">
+  ${formatearPrecio(p.precio)} <small>/${p.unidad}</small>
+</span>
+            <div class="stepper" data-id="${p.id}">
+              <button type="button" class="stepper-btn" data-action="menos" aria-label="Restar cantidad">−</button>
+              <span class="stepper-cant">1</span>
+              <button type="button" class="stepper-btn" data-action="mas" aria-label="Sumar cantidad">+</button>
+            </div>
+          </div>
+          <button type="button" class="btn-agregar" data-add="${p.id}">Agregar al carrito</button>
+        </div>
+      </article>
+    `).join('');
+  }
+
+  
+
+  gridProductos.addEventListener('click', (e) => {
+    const stepperBtn = e.target.closest('.stepper-btn');
+    if(stepperBtn){
+      const wrapper = stepperBtn.closest('.stepper');
+      const id = wrapper.dataset.id;
+      if(stepperBtn.dataset.action === 'mas') cantidadesTemp[id]++;
+      if(stepperBtn.dataset.action === 'menos') cantidadesTemp[id] = Math.max(1, cantidadesTemp[id] - 1);
+      wrapper.querySelector('.stepper-cant').textContent = cantidadesTemp[id];
+      return;
+    }
+    const addBtn = e.target.closest('[data-add]');
+    if(addBtn){
+      const id = addBtn.dataset.add;
+      agregarAlCarrito(id, cantidadesTemp[id]);
+      cantidadesTemp[id] = 1;
+      const span = gridProductos.querySelector(`.stepper[data-id="${id}"] .stepper-cant`);
+      if(span) span.textContent = '1';
+      const textoOriginal = addBtn.textContent;
+      addBtn.textContent = '¡Agregado! ✓';
+      addBtn.classList.add('agregado');
+      setTimeout(() => { addBtn.textContent = textoOriginal; addBtn.classList.remove('agregado'); }, 1200);
+    }
+  });
+
+  /* ============================================================
+     CARRITO — guardado automático con localStorage
+     ============================================================ */
+  const STORAGE_KEY = 'chipasMbareteCarrito';
+  let carrito = cargarCarrito();
+
+  function cargarCarrito(){
+    try{
+      const datos = localStorage.getItem(STORAGE_KEY);
+      return datos ? JSON.parse(datos) : [];
+    }catch(err){
+      return [];
+    }
+  }
+
+  function guardarCarrito(){
+    try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(carrito)); }catch(err){ /* localStorage no disponible */ }
+  }
+
+  function agregarAlCarrito(id, cantidad){
+    const producto = PRODUCTOS.find(p => p.id === id);
+    if(!producto) return;
+    const existente = carrito.find(item => item.id === id);
+    if(existente){ existente.cantidad += cantidad; }
+    else { carrito.push({ id: id, cantidad: cantidad }); }
+    guardarCarrito();
+    renderCarrito();
+    abrirCarrito();
+  }
+
+  function quitarDelCarrito(id){
+    carrito = carrito.filter(item => item.id !== id);
+    guardarCarrito();
+    renderCarrito();
+  }
+
+  function cambiarCantidadCarrito(id, delta){
+    const item = carrito.find(i => i.id === id);
+    if(!item) return;
+    item.cantidad += delta;
+    if(item.cantidad <= 0){ quitarDelCarrito(id); return; }
+    guardarCarrito();
+    renderCarrito();
+  }
+
+  function calcularTotal(){
+    return carrito.reduce((acc, item) => {
+      const producto = PRODUCTOS.find(p => p.id === item.id);
+      return acc + (producto ? producto.precio * item.cantidad : 0);
+    }, 0);
+  }
+
+  const listaCarrito = document.getElementById('lista-carrito');
+  const totalCarritoEl = document.getElementById('total-carrito');
+  const badgeCarrito = document.getElementById('badge-carrito');
+  const carritoVacioEl = document.getElementById('carrito-vacio');
+
+  function renderCarrito(){
+    const cantidadTotal = carrito.reduce((a, i) => a + i.cantidad, 0);
+    badgeCarrito.textContent = String(cantidadTotal);
+    badgeCarrito.style.display = cantidadTotal > 0 ? 'flex' : 'none';
+
+    if(carrito.length === 0){
+      listaCarrito.innerHTML = '';
+      carritoVacioEl.style.display = 'block';
+    }else{
+      carritoVacioEl.style.display = 'none';
+      listaCarrito.innerHTML = carrito.map(item => {
+        const producto = PRODUCTOS.find(p => p.id === item.id);
+        if(!producto) return '';
+        const subtotal = producto.precio * item.cantidad;
+        return `
+          <li class="item-carrito">
+            <div class="item-info">
+              <strong>${producto.nombre}</strong>
+              <span>${formatearPrecio(producto.precio)} Kg</span>
+            </div>
+            <div class="item-controles">
+              <button type="button" class="stepper-btn" data-cart-action="menos" data-cart-id="${item.id}" aria-label="Restar cantidad">−</button>
+              <span>${item.cantidad}</span>
+              <button type="button" class="stepper-btn" data-cart-action="mas" data-cart-id="${item.id}" aria-label="Sumar cantidad">+</button>
+            </div>
+            <div class="item-subtotal">
+              ${formatearPrecio(subtotal)}
+              <button type="button" class="item-quitar" data-cart-remove="${item.id}" aria-label="Quitar producto">🗑</button>
+            </div>
+          </li>
+        `;
+      }).join('');
+    }
+    totalCarritoEl.textContent = formatearPrecio(calcularTotal());
+  }
+
+  listaCarrito.addEventListener('click', (e) => {
+    const menos = e.target.closest('[data-cart-action="menos"]');
+    const mas = e.target.closest('[data-cart-action="mas"]');
+    const quitar = e.target.closest('[data-cart-remove]');
+    if(menos) cambiarCantidadCarrito(menos.dataset.cartId, -1);
+    if(mas) cambiarCantidadCarrito(mas.dataset.cartId, 1);
+    if(quitar) quitarDelCarrito(quitar.dataset.cartRemove);
+  });
+
+  /* ============================================================
+     ABRIR / CERRAR CARRITO LATERAL
+     ============================================================ */
+  const cartDrawer = document.getElementById('cart-drawer');
+  const cartOverlay = document.getElementById('cart-overlay');
+
+  function abrirCarrito(){
+    cartDrawer.classList.add('abierto');
+    cartOverlay.classList.add('visible');
+    document.body.style.overflow = 'hidden';
+  }
+  function cerrarCarrito(){
+    cartDrawer.classList.remove('abierto');
+    cartOverlay.classList.remove('visible');
+    document.body.style.overflow = '';
+  }
+  document.querySelectorAll('[data-abrir-carrito]').forEach(btn => btn.addEventListener('click', abrirCarrito));
+  document.querySelectorAll('[data-cerrar-carrito]').forEach(el => el.addEventListener('click', cerrarCarrito));
+
+  /* ============================================================
+     FINALIZAR PEDIDO POR WHATSAPP
+     ============================================================ */
+  const btnFinalizar = document.getElementById('btn-finalizar-pedido');
+  const inputNombre = document.getElementById('input-nombre-cliente');
+
+  btnFinalizar.addEventListener('click', () => {
+    if(carrito.length === 0){
+      alert('Tu carrito está vacío. ¡Agregá algún producto antes de hacer el pedido!');
+      return;
+    }
+    const nombre = inputNombre.value.trim();
+    let mensaje = `Hola ${CONFIG.nombreNegocio} 👋\nQuiero realizar el siguiente pedido:\n\n`;
+    carrito.forEach(item => {
+      const producto = PRODUCTOS.find(p => p.id === item.id);
+      if(producto){
+        mensaje += `• ${item.cantidad}x ${producto.nombre} — ${formatearPrecio(producto.precio * item.cantidad)}\n`;
+      }
+    });
+    mensaje += `\nTotal: ${formatearPrecio(calcularTotal())}\n`;
+    mensaje += `Mi nombre es: ${nombre ? nombre : '__________'}\n`;
+    mensaje += `Gracias.`;
+
+    const url = `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(mensaje)}`;
+    window.open(url, '_blank');
+  });
+
+  /* ============================================================
+     PROMOCIONES — botón directo a WhatsApp
+     ============================================================ */
+  document.querySelectorAll('[data-promo-mensaje]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const texto = btn.dataset.promoMensaje;
+      const mensaje = `Hola ${CONFIG.nombreNegocio} 👋\nMe interesa esta promoción:\n${texto}\n\nMi nombre es: __________\nGracias.`;
+      const url = `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(mensaje)}`;
+      window.open(url, '_blank');
+    });
+  });
+
+  /* ============================================================
+     MENÚ — versión móvil, scroll suave y sombra al bajar
+     ============================================================ */
+  const header = document.getElementById('header-principal');
+  const navToggle = document.getElementById('nav-toggle');
+  const navMenu = document.getElementById('nav-menu');
+
+  navToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('abierto');
+    navToggle.classList.toggle('activo');
+  });
+  navMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navMenu.classList.remove('abierto');
+      navToggle.classList.remove('activo');
+    });
+  });
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('con-sombra', window.scrollY > 12);
+  });
+
+  /* ============================================================
+     ANIMACIONES AL HACER SCROLL
+     ============================================================ */
+  const observador = new IntersectionObserver((entradas) => {
+    entradas.forEach(entrada => {
+      if(entrada.isIntersecting){
+        entrada.target.classList.add('visible');
+        observador.unobserve(entrada.target);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  function observarReveals(){
+    document.querySelectorAll('.reveal').forEach(el => observador.observe(el));
+  }
+
+  /* ============================================================
+     INICIALIZACIÓN
+     ============================================================ */
+  const anioActual = document.getElementById('anio-actual');
+  if(anioActual) anioActual.textContent = new Date().getFullYear();
+
+  renderProductos();
+  renderCarrito();
+  observarReveals();
+
+})();
+</script>
+</body>
+</html>
